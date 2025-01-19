@@ -172,6 +172,12 @@ public class MyBot extends TelegramLongPollingBot {
         } else if (text.equals("talim_callback")) {
             talimTolov(message);
         }
+        else if (text.equals("bot1_callback")) {
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(message.getChatId());
+            sendMessage.setText("Bu botda\n◾pul otkazish\n◾telefonga pul o'tkazish\n◾xayriya qilish\n◾jarimalaringizni to'lash\nva boshqa xizmatlardan foydalanishingiz mumkin⚙");
+            send(sendMessage);
+        }
     }
     private void tolov(Message message) {
         SendMessage sendMessage = new SendMessage();
