@@ -149,7 +149,7 @@ public class MyBot extends TelegramLongPollingBot {
 
             if (senderCard.getBalance() > amount){
                 sendMessage.setText("Mobile operator to'lovi muvaffaqiyatli amalga oshirildi");
-
+                send(sendMessage);
                 tolovEntity.setSenderCardNumber(senderCard.getNumber());
                 tolovEntity.setAmount(amount);
                 tolovEntity.setDate(LocalDateTime.now().toString().substring(0, 19));
