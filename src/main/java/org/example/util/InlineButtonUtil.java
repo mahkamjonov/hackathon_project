@@ -95,13 +95,13 @@ public class InlineButtonUtil {
     }
     public static InlineKeyboardMarkup servisMenu(){
 
-        InlineKeyboardButton button1 = InlineButtonUtil.button("PeyMe Avia", "balance_callback", "✈");
+        InlineKeyboardButton button1 = InlineButtonUtil.button("PeyMe Avia", "avia_callback", "✈");
         List<InlineKeyboardButton> row1 = InlineButtonUtil.row(button1);
 
-        InlineKeyboardButton button2 = InlineButtonUtil.button("YXX Jarimalar", "otkazma_callback", "\uD83E\uDDFE");
+        InlineKeyboardButton button2 = InlineButtonUtil.button("YXX Jarimalar", "yxx_callback", "\uD83E\uDDFE");
         List<InlineKeyboardButton> row2 = InlineButtonUtil.row(button2);
 
-        InlineKeyboardButton button3 = InlineButtonUtil.button("Xayria", "tolov_callback", "🗳");
+        InlineKeyboardButton button3 = InlineButtonUtil.button("Xayria", "xayriya_callback", "🗳");
         List<InlineKeyboardButton> row3 = InlineButtonUtil.row(button3);
 
         List<List<InlineKeyboardButton>> rowList = InlineButtonUtil.rowList( row1, row2, row3);
