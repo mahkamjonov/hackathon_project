@@ -136,10 +136,10 @@ public class MyBot extends TelegramLongPollingBot {
                 tolovEntity.setPhoneNumber(message.getText());
                 HashMapUtil.tolovHashMap.put(message.getChatId(), tolovEntity);
 
-                sendMessage.setText("Summa kiriting");
+                sendMessage.setText("Summa kiriting💸");
             }
             else {
-                sendMessage.setText("Raqam notog'ri kiritildi, qayta kiriting.");
+                sendMessage.setText("Raqam notog'ri kiritildi, qayta kiriting❌📞");
             }
             send(sendMessage);
         } else if (tolovEntity != null && tolovEntity.getStep().equals(Step.MOBILE_OPERATOR_AMOUNT)){
