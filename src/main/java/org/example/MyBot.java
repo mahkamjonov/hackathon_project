@@ -148,8 +148,7 @@ public class MyBot extends TelegramLongPollingBot {
             double amount = Double.parseDouble(message.getText());
 
             if (senderCard.getBalance() > amount){
-                sendMessage.setText("Mobile operator to'lovi muvaffaqiyatli amalga oshirildi");
-                send(sendMessage);
+                sendMessage.setText("Mobile operator to'lovi muvaffaqiyatli amalga oshirildi✔");
                 tolovEntity.setSenderCardNumber(senderCard.getNumber());
                 tolovEntity.setAmount(amount);
                 tolovEntity.setDate(LocalDateTime.now().toString().substring(0, 19));
@@ -162,7 +161,7 @@ public class MyBot extends TelegramLongPollingBot {
                 HashMapUtil.tolovHashMap.remove(message.getChatId(), tolovEntity);
             }
             else {
-                sendMessage.setText("Mablag' yetarli emas");
+                sendMessage.setText("Mablag' yetarli emas❌");
             }
             send(sendMessage);
         }
