@@ -82,7 +82,7 @@ public class MyBot extends TelegramLongPollingBot {
         }
     }
 
-    private void handleText(Message message) {
+ private void handleText(Message message) {
 
         USerEntity entity1 = HashMapUtil.hashMap.get( message.getChatId() );
         TransferEntity entity2 = HashMapUtil.transferHashMap.get( message.getChatId() );
@@ -128,6 +128,7 @@ public class MyBot extends TelegramLongPollingBot {
                 dataBase.saveTransfer(getterCard);
                 dataBase.setTransfer( entity2 );
                 HashMapUtil.transferHashMap.remove(message.getChatId());
+
             }
             else {
                 sendMessage.setText("Hisobda pul yetarli emas ❌💵");
@@ -135,7 +136,6 @@ public class MyBot extends TelegramLongPollingBot {
             send(sendMessage);
         }
     }
-
     public void callBackHandler(Message message, User user, String text) {
         if ( text.equals("add_callback") ) {
             addNewCard( message );
