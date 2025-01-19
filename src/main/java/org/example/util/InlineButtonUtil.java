@@ -62,8 +62,6 @@ public class InlineButtonUtil {
         return keyboard(rowList);
     }
     public static InlineKeyboardMarkup servisMenu(){
-        InlineKeyboardButton button = InlineButtonUtil.button("Kredit", "add_callback", "📥💰");
-        List<InlineKeyboardButton> row = InlineButtonUtil.row(button);
 
         InlineKeyboardButton button1 = InlineButtonUtil.button("PeyMe Avia", "balance_callback", "✈");
         List<InlineKeyboardButton> row1 = InlineButtonUtil.row(button1);
@@ -74,7 +72,7 @@ public class InlineButtonUtil {
         InlineKeyboardButton button3 = InlineButtonUtil.button("Xayria", "tolov_callback", "🗳");
         List<InlineKeyboardButton> row3 = InlineButtonUtil.row(button3);
 
-        List<List<InlineKeyboardButton>> rowList = InlineButtonUtil.rowList(row, row1, row2, row3);
+        List<List<InlineKeyboardButton>> rowList = InlineButtonUtil.rowList( row1, row2, row3);
         return keyboard(rowList);
 
     }
