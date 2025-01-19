@@ -47,12 +47,12 @@ public class MyBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "t.me/PAYM11_bot";
+        return "t.me/NAI_PAY_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "7834828106:AAH-YdyWkAW9V35n62SNIGgkJZlCdIu0C20";
+        return "7701179353:AAGvXx349YVr8srmhScqp6fapnzX70F6pbg";
     }
 
     public void send(SendMessage sendMessage) {
@@ -171,6 +171,12 @@ public class MyBot extends TelegramLongPollingBot {
 
         } else if (text.equals("talim_callback")) {
             talimTolov(message);
+        }
+        else if (text.equals("bot1_callback")) {
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(message.getChatId());
+            sendMessage.setText("Bu botda\n◾pul otkazish\n◾telefonga pul o'tkazish\n◾xayriya qilish\n◾jarimalaringizni to'lash\nva boshqa xizmatlardan foydalanishingiz mumkin⚙");
+            send(sendMessage);
         }
     }
     private void tolov(Message message) {
