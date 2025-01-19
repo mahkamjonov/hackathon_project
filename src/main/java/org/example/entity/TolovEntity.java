@@ -16,6 +16,24 @@ public class TolovEntity {
 
     private String date;
 
+    private String phoneNumber;
+
+    private String senderCardNumber;
+
+    public TolovEntity() {
+    }
+
+    public TolovEntity(Long userId, Long id, double amount, String type, Step step, String date, String phoneNumber, String senderCardNumber) {
+        this.userId = userId;
+        this.id = id;
+        this.amount = amount;
+        this.type = type;
+        this.step = step;
+        this.date = date;
+        this.phoneNumber = phoneNumber;
+        this.senderCardNumber = senderCardNumber;
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -62,5 +80,21 @@ public class TolovEntity {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getSenderCardNumber() {
+        return senderCardNumber;
+    }
+
+    public void setSenderCardNumber(String senderCardNumber) {
+        this.senderCardNumber = senderCardNumber;
     }
 }

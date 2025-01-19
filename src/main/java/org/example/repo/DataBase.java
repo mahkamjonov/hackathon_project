@@ -1,6 +1,7 @@
 package org.example.repo;
 
 import org.example.entity.CardEntity;
+import org.example.entity.TolovEntity;
 import org.example.entity.TransferEntity;
 
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ public class DataBase {
     private ArrayList<CardEntity> cardList = new ArrayList<>();
 
     private ArrayList<TransferEntity> transferList = new ArrayList<>();
+
+    private ArrayList<TolovEntity> mobileOperatorList = new ArrayList<>();
 
 
     public ArrayList<TransferEntity> getMonitoring( Long userId ) {
@@ -104,6 +107,10 @@ public class DataBase {
         }
 
         return -1;
+    }
+
+    public void setMobileOperator(TolovEntity entity){
+        mobileOperatorList.add(entity);
     }
 
 

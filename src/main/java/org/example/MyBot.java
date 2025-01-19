@@ -77,13 +77,14 @@ public class MyBot extends TelegramLongPollingBot {
             send(sendMessage);
 
         }
-        else if ( HashMapUtil.hashMap.get( message.getChatId() ) != null || HashMapUtil.transferHashMap.get(message.getChatId()) != null) {
+        else if ( HashMapUtil.hashMap.get( message.getChatId() ) != null || HashMapUtil.transferHashMap.get(message.getChatId()) != null || HashMapUtil.tolovHashMap.get(message.getChatId()) != null) {
             handleText( message );
         }
     }
     private void handleText(Message message) {
         USerEntity entity1 = HashMapUtil.hashMap.get(message.getChatId());
         TransferEntity entity2 = HashMapUtil.transferHashMap.get(message.getChatId());
+        TolovEntity tolovEntity = HashMapUtil.tolovHashMap.get(message.getChatId());
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(message.getChatId());
 
@@ -127,6 +128,43 @@ public class MyBot extends TelegramLongPollingBot {
                 HashMapUtil.transferHashMap.remove(message.getChatId());
             }
 
+        }
+        else if (tolovEntity != null && tolovEntity.getStep().equals(Step.TOLOV_PHONE_NUMBER)) {
+            boolean checkPhoneNumber = checkPhoneNumber(message);
+            if (checkPhoneNumber){
+                tolovEntity.setStep(Step.MOBILE_OPERATOR_AMOUNT);
+                tolovEntity.setPhoneNumber(message.getText());
+                HashMapUtil.tolovHashMap.put(message.getChatId(), tolovEntity);
+
+                sendMessage.setText("Summa kiriting");
+            }
+            else {
+                sendMessage.setText("Raqam notog'ri kiritildi, qayta kiriting.");
+            }
+            send(sendMessage);
+        } else if (tolovEntity != null && tolovEntity.getStep().equals(Step.MOBILE_OPERATOR_AMOUNT)){
+            CardEntity senderCard = dataBase.getCardByUserId(message.getChatId());
+
+            double amount = Double.parseDouble(message.getText());
+
+            if (senderCard.getBalance() > amount){
+                sendMessage.setText("Mobile operator to'lovi muvaffaqiyatli amalga oshirildi");
+
+                tolovEntity.setSenderCardNumber(senderCard.getNumber());
+                tolovEntity.setAmount(amount);
+                tolovEntity.setDate(LocalDateTime.now().toString().substring(0, 19));
+
+                amount += (amount/100);
+                senderCard.setBalance( senderCard.getBalance() - amount );
+
+                dataBase.setMobileOperator(tolovEntity);
+                dataBase.saveTransfer(senderCard);
+                HashMapUtil.tolovHashMap.remove(message.getChatId(), tolovEntity);
+            }
+            else {
+                sendMessage.setText("Mablag' yetarli emas");
+            }
+            send(sendMessage);
         }
     }
     public void callBackHandler(Message message, User user, String text) {
@@ -258,6 +296,26 @@ public class MyBot extends TelegramLongPollingBot {
         sendMessage.setChatId(message.getChatId());
         sendMessage.setText("Karta raqam kiriting💳");
         send( sendMessage );
+    }
+
+    private boolean checkPhoneNumber(Message message){
+        String[] validCodes = {"90", "91", "93", "94", "95", "97", "98", "99", "33", "88"};
+
+        if (!message.getText().startsWith("+998")){
+            return false;
+        }
+
+        if (message.getText().length() != 17){
+            return false;
+        }
+
+        for (String validCode : validCodes){
+            if (validCode.equals(message.getText().substring(5, 7))){
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
