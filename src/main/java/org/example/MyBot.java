@@ -64,7 +64,7 @@ public class MyBot extends TelegramLongPollingBot {
     }
 
 
-    private void messageHandler(Message message) {
+     private void messageHandler(Message message) {
         String text = message.getText();
 
         SendMessage sendMessage = new SendMessage();
@@ -81,20 +81,17 @@ public class MyBot extends TelegramLongPollingBot {
             handleText( message );
         }
     }
-
     private void handleText(Message message) {
-
-        USerEntity entity1 = HashMapUtil.hashMap.get( message.getChatId() );
-        TransferEntity entity2 = HashMapUtil.transferHashMap.get( message.getChatId() );
+        USerEntity entity1 = HashMapUtil.hashMap.get(message.getChatId());
+        TransferEntity entity2 = HashMapUtil.transferHashMap.get(message.getChatId());
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(message.getChatId());
 
-        if ( entity1 != null && entity1.getStep().equals( Step.ADD_CARD ) ) {
-            if ( dataBase.findCard(message.getText(), message.getChatId()) ) {
+        if (entity1 != null && entity1.getStep().equals(Step.ADD_CARD)) {
+            if (dataBase.findCard(message.getText(), message.getChatId())) {
                 sendMessage.setText("Karta qo'shildi 💳✔");
-                HashMapUtil.hashMap.remove( message.getChatId() );
-            }
-            else {
+                HashMapUtil.hashMap.remove(message.getChatId());
+            } else {
                 sendMessage.setText("Karta topilmadi 💳❌");
             }
             send(sendMessage);
@@ -129,13 +126,9 @@ public class MyBot extends TelegramLongPollingBot {
                 dataBase.setTransfer( entity2 );
                 HashMapUtil.transferHashMap.remove(message.getChatId());
             }
-            else {
-                sendMessage.setText("Hisobda pul yetarli emas ❌💵");
-            }
-            send(sendMessage);
+
         }
     }
-
     public void callBackHandler(Message message, User user, String text) {
         if ( text.equals("add_callback") ) {
             addNewCard( message );
