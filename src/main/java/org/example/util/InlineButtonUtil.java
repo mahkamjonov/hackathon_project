@@ -58,7 +58,10 @@ public class InlineButtonUtil {
         InlineKeyboardButton button5 = InlineButtonUtil.button("Kirim-Chiqim", "monitoring_callback", "📉📈");
         List<InlineKeyboardButton> row5 = InlineButtonUtil.row(button5);
 
-        List<List<InlineKeyboardButton>> rowList = InlineButtonUtil.rowList(row, row1, row2, row3, row4, row5);
+        InlineKeyboardButton button6 = InlineButtonUtil.button("BOT haqida", "bot1_callback", "📰");
+        List<InlineKeyboardButton> row6 = InlineButtonUtil.row(button6);
+
+        List<List<InlineKeyboardButton>> rowList = InlineButtonUtil.rowList(row, row1, row2, row3, row4, row5,row6);
         return keyboard(rowList);
     }
     public static InlineKeyboardMarkup servisMenu(){
