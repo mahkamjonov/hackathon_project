@@ -99,20 +99,7 @@ public class MyBot extends TelegramLongPollingBot {
             }
             send(sendMessage);
         }
-        else if ( entity2 != null && entity2.getStep().equals( Step.CARD_NUMBER ) ) {
-            CardEntity card = dataBase.getCardByCardNumber( message.getText() );
-            if ( card != null ){
-                sendMessage.setText("Summani kiriting 💵");
-                entity2.setStep( Step.AMOUNT );
-                entity2.setGetterCardNumber( message.getText() );
-                HashMapUtil.transferHashMap.put(message.getChatId(), entity2);
-            }
-            else {
-                sendMessage.setText("Karta topilmadi 💳❌");
-            }
-            send( sendMessage );
-        }
-        else if ( entity2 != null && entity2.getStep().equals( Step.AMOUNT ) ) {
+               else if ( entity2 != null && entity2.getStep().equals( Step.AMOUNT ) ) {
             CardEntity senderCard = dataBase.getCardByUserId(message.getChatId());
             CardEntity getterCard = dataBase.getCardByCardNumber( entity2.getGetterCardNumber() );
             double amount = Double.parseDouble(message.getText());
@@ -128,7 +115,6 @@ public class MyBot extends TelegramLongPollingBot {
                 dataBase.saveTransfer(getterCard);
                 dataBase.setTransfer( entity2 );
                 HashMapUtil.transferHashMap.remove(message.getChatId());
-
             }
             else {
                 sendMessage.setText("Hisobda pul yetarli emas ❌💵");
@@ -136,6 +122,21 @@ public class MyBot extends TelegramLongPollingBot {
             send(sendMessage);
         }
     }
+        else if ( entity2 != null && entity2.getStep().equals( Step.CARD_NUMBER ) ) {
+            CardEntity card = dataBase.getCardByCardNumber( message.getText() );
+            if ( card != null ){
+                sendMessage.setText("Summani kiriting 💵");
+                entity2.setStep( Step.AMOUNT );
+                entity2.setGetterCardNumber( message.getText() );
+                HashMapUtil.transferHashMap.put(message.getChatId(), entity2);
+            }
+            else {
+                sendMessage.setText("Karta topilmadi 💳❌");
+            }
+            send( sendMessage );
+        }
+     
+
     public void callBackHandler(Message message, User user, String text) {
         if ( text.equals("add_callback") ) {
             addNewCard( message );
