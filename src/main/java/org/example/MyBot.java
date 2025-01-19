@@ -199,7 +199,39 @@ public class MyBot extends TelegramLongPollingBot {
 
             komunalTolov(message);
 
-        } else if (text.equals("talim_callback")) {
+        }else if (text.equals("12_callback")) {
+
+
+
+        } else if (text.equals("13_callback")) {
+
+
+
+        }else if (text.equals("14_callback")) {
+
+
+
+        }else if (text.equals("15_callback")) {
+
+
+
+        }else if (text.equals("16_callback")) {
+
+
+
+        }else if (text.equals("17_callback")) {
+
+
+
+        }else if (text.equals("18_callback")) {
+
+
+
+        }else if (text.equals("19_callback")) {
+
+
+
+        }else if (text.equals("talim_callback")) {
             talimTolov(message);
         }
         else if (text.equals("bot1_callback")) {

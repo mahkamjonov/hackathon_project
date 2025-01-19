@@ -38,6 +38,35 @@ public class InlineButtonUtil {
         return InlineButtonUtil.keyboard(InlineButtonUtil.rowList(row));
     }
 
+    public static InlineKeyboardMarkup aviaMenu() {
+
+        InlineKeyboardButton button = InlineButtonUtil.button("TASHKENT -> BUXORO", "12_callback", "💳➕");
+        List<InlineKeyboardButton> row = InlineButtonUtil.row(button);
+
+        InlineKeyboardButton button1 = InlineButtonUtil.button("TASHKENT -> ANDIJON", "13_callback", "💰");
+        List<InlineKeyboardButton> row1 = InlineButtonUtil.row(button1);
+
+        InlineKeyboardButton button2 = InlineButtonUtil.button("TASHKENT -> SAMARQAND", "14_callback", "📤");
+        List<InlineKeyboardButton> row2 = InlineButtonUtil.row(button2);
+
+        InlineKeyboardButton button3 = InlineButtonUtil.button("TASHKENT -> NAVOIY", "15_callback", "💲");
+        List<InlineKeyboardButton> row3 = InlineButtonUtil.row(button3);
+
+        InlineKeyboardButton button4 = InlineButtonUtil.button("BUXORO -> TOSHKENT", "16_callback", "💼");
+        List<InlineKeyboardButton> row4 = InlineButtonUtil.row(button4);
+
+        InlineKeyboardButton button5 = InlineButtonUtil.button("ANDIJON -> TASHKENT", "17_callback", "📉📈");
+        List<InlineKeyboardButton> row5 = InlineButtonUtil.row(button5);
+
+        InlineKeyboardButton button6 = InlineButtonUtil.button("SAMARQAND -> TASHKENT  ", "18_callback", "📰");
+        List<InlineKeyboardButton> row6 = InlineButtonUtil.row(button6);
+
+        InlineKeyboardButton button7 = InlineButtonUtil.button("NAVOIY -> TASHKENT  ", "19_callback", "📰");
+        List<InlineKeyboardButton> row7 = InlineButtonUtil.row(button7);
+
+        List<List<InlineKeyboardButton>> rowList = InlineButtonUtil.rowList(row, row1, row2, row3, row4, row5,row6,row7);
+        return keyboard(rowList);
+    }
 
     public static InlineKeyboardMarkup mainMenu(){
         InlineKeyboardButton button = InlineButtonUtil.button("+ Karta qo'shish", "add_callback", "💳➕");
